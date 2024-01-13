@@ -1,0 +1,19 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v4.2.4
+_src_path: https://github.com/jupyterlab/extension-template
+author_email: ''
+author_name: Jeremy Tuloup
+data_format: string
+file_extension: ''
+has_binder: false
+has_settings: false
+kind: frontend
+labextension_name: jupyterlite-capytale
+mimetype: ''
+mimetype_name: ''
+project_short_description: A JupyterLab extension to integrate with Capytale
+python_name: jupyterlite_capytale
+repository: https://github.com/QuantStack/jupyterlite-capytale
+test: false
+viewer_name: ''
+
