@@ -4,6 +4,27 @@
 
 Extension and demo to integrate JupyterLite with Capytale.
 
+## Structure
+
+This repository contains a JupyterLab extension to integrate JupyterLite with Capytale, and a demo to show how to use it.
+
+### Extension
+
+The extension is located in the `src` folder. It sets up a bridge between a host application and a JupyterLite instance by using `postMessage` to communicate between the two.
+
+To install and develop the extension, see the `Development` and `Usage` sections below.
+
+### Demo
+
+The demo is located in the `demo` folder:
+
+- `index.html`: the main entry point of the demo
+- `content`: a few example notebooks
+- `overrides.json`: default set of override JupyterLab settings to customize the UI, to use a default display language, hide buttons and menu entries, etc...
+- `requirements.txt`: list of Python packages to install before building the JupyterLite site
+
+This demo is also deployed on GitHub pages and available at https://quantstack.net/jupyterlite-demo.
+
 ## Development
 
 ```bash
@@ -18,7 +39,7 @@ mamba activate jupyterlite-capytale
 # Install package in development mode
 python -m pip install -e .
 
-# Link your development version of the extension with JupyterLab
+# Link your development version of the extension
 jupyter labextension develop . --overwrite
 
 # Rebuild extension Typescript source after making changes
@@ -30,11 +51,11 @@ jlpm build
 Build a new JupyterLite site:
 
 ```bash
-cd examples
-jupyter lite build --contents content --output-dir lite
+# build the demo
+jlpm build:demo
 
-# start a local server
-python -m http.server
+# serve the demo
+jlpm serve:demo
 ```
 
-Then go to http://localhost:8000
+Then go to http://localhost:8000 to open the demo.
