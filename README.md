@@ -1,12 +1,40 @@
-# JupyterLite Demo
+# JupyterLite Capytale
 
-[![lite-badge](https://jupyterlite.rtfd.io/en/latest/_static/badge.svg)](https://jupyterlite-capytale.quantstack.net)
+[![lite-badge](https://jupyterlite.rtfd.io/en/latest/_static/badge.svg)](https://quantstack.net/jupyterlite-demo)
 
-JupyterLite deployed as a static site to GitHub Pages, for demo purposes.
+Extension and demo to integrate JupyterLite with Capytale.
 
-## ✨ Try it in your browser ✨
+## Development
 
-➡️ **https://jupyterlite-capytale.quantstack.net**
+```bash
+# Clone the repo to your local environment
 
-![github-pages](https://user-images.githubusercontent.com/591645/120649478-18258400-c47d-11eb-80e5-185e52ff2702.gif)
+# Create a new environment
+mamba create -n jupyterlite-capytale -c conda-forge python=3.11 jupyterlite-pyodide-kernel=0.2 jupyterlab=4 notebook=7
 
+# Activate the environment
+mamba activate jupyterlite-capytale
+
+# Install package in development mode
+python -m pip install -e .
+
+# Link your development version of the extension with JupyterLab
+jupyter labextension develop . --overwrite
+
+# Rebuild extension Typescript source after making changes
+jlpm build
+```
+
+### Usage
+
+Build a new JupyterLite site:
+
+```bash
+cd examples
+jupyter lite build --contents content --output-dir lite
+
+# start a local server
+python -m http.server
+```
+
+Then go to http://localhost:8000
