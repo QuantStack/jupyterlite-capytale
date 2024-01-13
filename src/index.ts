@@ -17,7 +17,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
 
     /* Incoming messages management */
     window.addEventListener('message', event => {
-      if (event.data.type === 'from-host-to-iframe') {
+      if (event.data.type === 'jupyterlite-capytale') {
         console.log('Message received in the iframe:', event.data);
 
         if (themeManager.theme === 'JupyterLab Dark') {
