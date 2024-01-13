@@ -52,10 +52,10 @@ Build a new JupyterLite site:
 
 ```bash
 # build the demo
-jlpm build:demo
+jlpm demo:build
 
 # serve the demo
-jlpm serve:demo
+jlpm demo:build
 ```
 
 Then go to http://localhost:8000 to open the demo.

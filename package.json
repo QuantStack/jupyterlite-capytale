@@ -31,12 +31,13 @@
         "build:labextension:dev": "jupyter labextension build --development True .",
         "build:lib": "tsc --sourceMap",
         "build:lib:prod": "tsc",
-        "build:demo": "cd demo && jupyter lite build --contents content --output-dir lite",
         "clean": "jlpm clean:lib",
         "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
         "clean:lintcache": "rimraf .eslintcache .stylelintcache",
         "clean:labextension": "rimraf jupyterlite_capytale/labextension jupyterlite_capytale/_version.py",
         "clean:all": "jlpm clean:lib && jlpm clean:labextension && jlpm clean:lintcache",
+        "demo:build": "cd demo && jupyter lite build --contents content --output-dir lite",
+        "demo:serve": "python -m http.server --directory demo",
         "eslint": "jlpm eslint:check --fix",
         "eslint:check": "eslint . --cache --ext .ts,.tsx",
         "install:extension": "jlpm build",
@@ -45,7 +46,6 @@
         "prettier": "jlpm prettier:base --write --list-different",
         "prettier:base": "prettier \"**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}\"",
         "prettier:check": "jlpm prettier:base --check",
-        "serve:demo": "python -m http.server --directory demo",
         "stylelint": "jlpm stylelint:check --fix",
         "stylelint:check": "stylelint --cache \"style/**/*.css\"",
         "watch": "run-p watch:src watch:labextension",
@@ -53,7 +53,9 @@
         "watch:labextension": "jupyter labextension watch ."
     },
     "dependencies": {
-        "@jupyterlab/application": "^4.0.0"
+        "@jupyterlab/application": "^4.0.0",
+        "@jupyterlab/apputils": "^4.0.0",
+        "@jupyterlab/notebook": "^4.0.0"
     },
     "devDependencies": {
         "@jupyterlab/builder": "^4.0.0",
