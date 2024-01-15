@@ -1,3 +1,6 @@
+# Install the extension
+..
+
 # Core modules (mandatory)
 jupyterlite-core==0.2.2
 jupyterlab~=4.0.10
