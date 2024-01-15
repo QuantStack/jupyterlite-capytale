@@ -114,3 +114,15 @@ dmypy.json
 # jupyterlite
 *.doit.db
 _output
+
+# JupyterLab extension
+.yarn
+*.tsbuildinfo
+jupyterlite_capytale/labextension
+# Version file is handled by hatchling
+jupyterlite_capytale/_version.py
+.eslintcache
+.stylelintcache
+
+# demo
+demo/lite
