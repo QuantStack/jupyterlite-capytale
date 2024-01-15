@@ -1,6 +1,6 @@
 # JupyterLite Capytale
 
-[![lite-badge](https://jupyterlite.rtfd.io/en/latest/_static/badge.svg)](https://quantstack.net/jupyterlite-demo)
+[![lite-badge](https://jupyterlite.rtfd.io/en/latest/_static/badge.svg)](https://quantstack.net/jupyterlite-capytale)
 
 Extension and demo to integrate JupyterLite with Capytale.
 
@@ -23,7 +23,7 @@ The demo is located in the `demo` folder:
 - `overrides.json`: default set of override JupyterLab settings to customize the UI, to use a default display language, hide buttons and menu entries, etc...
 - `requirements.txt`: list of Python packages to install before building the JupyterLite site
 
-This demo is also deployed on GitHub pages and available at https://quantstack.net/jupyterlite-demo.
+This demo is also deployed on GitHub pages and available at https://quantstack.net/jupyterlite-capytale.
 
 ## Development
 
