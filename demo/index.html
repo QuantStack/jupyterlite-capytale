@@ -1,37 +1,18 @@
 <html>
-  <title>JupyterLite embed example</title>
+  <head>
+    <title>JupyterLite embed example</title>
+    <script src="https://cdn.jsdelivr.net/npm/comlink@4.4.1/dist/umd/comlink.min.js"></script>
+    <script src="https://cdn.ac-paris.fr/capytale/mp-agent.js"></script>
+  </head>
   <body>
-    <script type="text/javascript">
-      const type = 'jupyterlite-capytale';
-
-      function toggleTheme() {
-        window.frames.jupyterlite.postMessage({ type, action: 'toggleTheme' });
-      }
-
-      function save() {
-        window.frames.jupyterlite.postMessage({ type, action: 'save' });
-      }
-
-      function download() {
-        window.frames.jupyterlite.postMessage({ type, action: 'download' });
-      }
-
-      window.addEventListener('message', (event) => {
-        if (event.data.type !== type) {
-          // bail if the message is not from the JupyterLite IFrame
-          return;
-        }
-        console.log('Received message from JupyterLite IFrame', event.data);
-      });
-
-    </script>
     <h2>Below is a JupyterLite site running in an IFrame</h2>
     <p>
       Click the following button sends a message to the JupyterLab IFrame to toggle the theme.
     </p>
-    <input type="button" value="Toggle the JupyterLab Theme" onclick="toggleTheme()">
-    <input type="button" value="Save the notebook" onclick="save()">
-    <input type="button" value="Download the notebook" onclick="download()">
+    <input id="theme-btn" type="button" value="Toggle the JupyterLab Theme">
+    <input id="get-content-btn" type="button" value="retrieve current ipynb">
+    <input id="set-content-btn" type="button" value="set ipnb" disabled>
+    <span id="info"></span>
 
     <!--
       Change "src" to point to other JupyterLite applications:
@@ -41,6 +22,7 @@
       - lite/repl for the JupyterLite REPL
     -->
     <iframe
+      id="jupyterlite-app"
       name="jupyterlite"
       src="lite/notebooks/index.html?path=intro.ipynb"
       width="100%"
@@ -48,5 +30,56 @@
       sandbox="allow-scripts allow-same-origin"
     >
     </iframe>
+    <script>
+      const socket = MpAgent.getSocket(document.querySelector('#jupyterlite-app'));
+
+      // Gestion du theme
+      let theme = 'light';
+      // Branchement de l'implémentation du contrat 'theme' version 1
+      socket.plug(
+        ['theme:1'],
+        ([tc]) => {
+          document.querySelector('#theme-btn').addEventListener('click', () => {
+            theme = theme === 'light' ? 'dark' : 'light';
+            tc.i?.setTheme(theme);
+          });
+          return [
+            // implémentation de 'theme:1'
+            {
+              getCurrentTheme() {
+                return theme;
+              },
+            }
+          ];
+        }
+      );
+
+      // Gestion du contenu
+      // Branchement de l'implémentation du contrat 'simple-content(text)' version 1
+      socket.plug(
+        ['simple-content(text):1'],
+        ([scc]) => {
+          document.querySelector('#get-content-btn').addEventListener('click', async () => {
+            content = await scc.i?.getContent();
+            document.querySelector('#set-content-btn').disabled = false;
+            document.querySelector('#info').textContent = 'current ipnb retrieved (' + content.length + ' chars). Click on "set ipnb" to reload it.';
+            console.log('content size:', content.length);
+            scc.i?.contentSaved();
+          });
+          document.querySelector('#set-content-btn').addEventListener('click', async () => {
+            await scc.i?.loadContent(content);
+            document.querySelector('#info').textContent = 'ipnb reloaded';
+          });
+          return [
+            // implémentation de 'simple-content(text):1'
+            {
+              contentChanged() {
+                document.querySelector('#info').textContent = 'JupyterLite said the content changed.';
+              },
+            }
+          ];
+        }
+      );
+    </script>
   </body>
 </html>
