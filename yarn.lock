@@ -40,6 +40,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@capytale/app-agent@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@capytale/app-agent@npm:1.0.4"
+  dependencies:
+    comlink: ^4.4.1
+  checksum: 43eac1f73816bfd6e1a1440d3ae585472b8936a221bc732f0a1202f0433478012fb80e40728155abb47c0af5a1827b858f77f27160834b8826edc16731d6d613
+  languageName: node
+  linkType: hard
+
+"@capytale/contracts@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@capytale/contracts@npm:1.0.1"
+  checksum: d95b81307906d8a44e282ea4ba437a10560155253130d8baf6135bbe1530e382bdf3674c7ef919bb9b6a54d85d934a8042134857663ccba3f9168dc8bfb3df38
+  languageName: node
+  linkType: hard
+
 "@codemirror/autocomplete@npm:^6.0.0, @codemirror/autocomplete@npm:^6.3.2, @codemirror/autocomplete@npm:^6.5.1, @codemirror/autocomplete@npm:^6.7.1":
   version: 6.12.0
   resolution: "@codemirror/autocomplete@npm:6.12.0"
@@ -2293,6 +2309,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"comlink@npm:^4.4.1":
+  version: 4.4.1
+  resolution: "comlink@npm:4.4.1"
+  checksum: 16d58a8f590087fc45432e31d6c138308dfd4b75b89aec0b7f7bb97ad33d810381bd2b1e608a1fb2cf05979af9cbfcdcaf1715996d5fcf77aeb013b6da3260af
+  languageName: node
+  linkType: hard
+
 "commander@npm:^10.0.1":
   version: 10.0.1
   resolution: "commander@npm:10.0.1"
@@ -3883,6 +3906,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "jupyterlite-capytale@workspace:."
   dependencies:
+    "@capytale/app-agent": ^1.0.4
+    "@capytale/contracts": ^1.0.1
     "@jupyterlab/application": ^4.0.0
     "@jupyterlab/apputils": ^4.0.0
     "@jupyterlab/builder": ^4.0.0
